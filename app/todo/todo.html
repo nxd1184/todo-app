@@ -1,0 +1,29 @@
+<form class="form-inline" ng-submit="save(todo)" name="todoForm">
+    <div class="form-group">
+        <label class="sr-only" for="todo">TODO</label>
+        <input type="text" class="form-control" id="todo" ng-model="todo" placeholder="TODO" required />
+    </div>
+    <button type="submit" class="btn btn-primary" ng-disabled="!todoForm.$dirty || todoForm.$invalid">Save</button>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <th width="20px">
+            <input type="checkbox" ng-model="selectAllItem" ng-click="selectAll()"/>
+        </th>
+        <th width="20px">#</th>
+        <th>TODO</th>
+        <th width="50%">Delete</th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="t in todos">
+            <td><input type="checkbox" ng-model="t.deleted"/></td>
+            <td>{{$index + 1}}</td>
+            <td>{{t.value}}</td>
+            <td>
+                <button class="btn btn-danger" ng-click="delete($index)">Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button class="btn btn-danger" ng-click="deleteSelectedItem()" ng-if="todos.length > 0">Delete selected items</button>
