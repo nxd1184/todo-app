@@ -36,12 +36,18 @@ angular.module('myApp.todo', ['ngRoute'])
     }
 
     $scope.deleteSelectedItem = function() {
+        var flag = false;
         for(var i = 0; i < $scope.todos.length; i++) {
             var t = $scope.todos[i];
             if(t.deleted) {
                 $scope.todos.splice(i,1);
                 i--;
+                flag = true;
             }
         }
+        if(flag) {
+            $scope.selectAllItem = false;
+        }
+
     }
 }]);
